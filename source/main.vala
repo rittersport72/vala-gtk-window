@@ -9,7 +9,7 @@ public class UpperLower : Gtk.Application {
     private Gtk.Button upperButton;
     private Gtk.Button lowerButton;
     
-    public UpperLower(){
+    public UpperLower() {
         Object(application_id: APP_ID);
     }
     
@@ -20,22 +20,40 @@ public class UpperLower : Gtk.Application {
             default_height = HEIGHT,
         };
         
-        upperButton = new Gtk.Button.with_label("Upper case");
-        lowerButton = new Gtk.Button.with_label("Lower case");
+        upperButton = new Gtk.Button.with_label("Upper case") {
+            margin_top = MARGIN,
+            margin_bottom = MARGIN,
+            margin_start = MARGIN,
+            margin_end = MARGIN,
+        };
+
+        lowerButton = new Gtk.Button.with_label("Lower case") {
+            margin_top = MARGIN,
+            margin_bottom = MARGIN,
+            margin_start = MARGIN,
+            margin_end = MARGIN,
+        };
         
         textView = new Gtk.TextView() {
             vexpand = true,
+            margin_top = MARGIN,
+            margin_bottom = MARGIN,
+            margin_start = MARGIN,
+            margin_end = MARGIN,
         };
         
         upperButton.clicked.connect (() => {
-            stdout.printf("u clicked\n"); 
+            stdout.printf("u clicked\n");
+            //textView.get_buffer().get_bounds(start, end);
         });
 
         lowerButton.clicked.connect (() => {
             stdout.printf("l clicked\n"); 
         });
         
-        var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 5);
+        var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 5) {
+            halign = Gtk.Align.CENTER,
+        };
         hbox.append(upperButton);
         hbox.append(lowerButton);
         
@@ -44,7 +62,7 @@ public class UpperLower : Gtk.Application {
         vbox.append(hbox);
         
         window.child = vbox;
-        window.present ();
+        window.present();
     }
     
     public static int main(string[] args) {
