@@ -43,12 +43,13 @@ public class UpperLower : Gtk.Application {
         };
         
         upperButton.clicked.connect (() => {
-            stdout.printf("u clicked\n");
-            //textView.get_buffer().get_bounds(start, end);
+            string text = textView.buffer.text;
+            textView.buffer.text = text.ascii_up();
         });
 
         lowerButton.clicked.connect (() => {
-            stdout.printf("l clicked\n"); 
+            string text = textView.buffer.text;
+            textView.buffer.text = text.ascii_down();
         });
         
         var hbox = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 5) {
